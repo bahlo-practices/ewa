@@ -10,7 +10,7 @@
   Klick auf `x`entfernt.
 
 ## Bestellung abschicken
-* Der Kunde kann die Bestellung abschicken, sobald das Adress-Feld ausgegraut
+* Der Kunde kann die Bestellung abschicken, sobald das Adress-Feld ausgefüllt
   und mindestens eine Pizza im Warenkorb ist. Davor ist der Bestellen-Button
   deaktiviert
 * **Test 3:** Das Adressfeld wird befüllt (Warenkorb leer), der Bestellen-Button
@@ -21,7 +21,7 @@
   Bestellen-Button sollte aktiviert sein
 
 # Status einer Pizza ändern
-* Wenn der Pizzabäcker oder der Fahrer den Status einer Pizza ändern,
+* Wenn der Pizzabäcker den Status einer Pizza ändern,
   sollte nach einem Refresh die aktualisierte Liste der Pizzen angezeigt werden.
 * Sobald der Status einer Pizza auf fertig gesetzt wird, verschwindet sie aus
   der Liste auf dem Pizzabäcker-View
