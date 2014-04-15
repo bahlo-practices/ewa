@@ -3,33 +3,90 @@
   <head>
     <title>Bestellung</title>
     <meta charset="utf-8">
+    <script>
+      window.addEventListener('load', function() {
+        var orders = document.getElementById('orders'),
+            pizzas = document.getElementsByClassName('add-pizza');
+
+        // Register on pizzas to add to select box
+        for (var i = 0;i < pizzas.length;++i) {
+          pizzas[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            var prefix = this.getAttribute('data-name'),
+                id = this.getAttribute('data-id'),
+                name = document.getElementById(prefix + '-name').innerText,
+                price = document.getElementById(prefix + '-price').innerText;
+            orders.options[orders.options.length] = new Option(name, id);
+          });
+        }
+
+        // Delete all
+        document.getElementById('delete-all').addEventListener('click', function(e) {
+          e.preventDefault();
+          // Fasted way to remove all childs
+          while (orders.firstChild) {
+            orders.removeChild(orders.firstChild);
+          }
+        });
+
+        // Delete selected
+        document.getElementById('delete-selected').addEventListener('click', function(e) {
+          e.preventDefault();
+
+          // Rescue all unselected options
+          var rescued = [];
+          for (var i = 0;i < orders.options.length;++i) {
+            if (!orders.options[i].selected) {
+              rescued.push(orders.options[i]);
+            }
+          }
+          // Delete aaall the orders
+          while (orders.firstChild) {
+            orders.removeChild(orders.firstChild);
+          }
+          // Insert the rescued ones
+          for (var i = 0;i < rescued.length;++i) {
+            orders[orders.length] = rescued[i];
+          }
+        });
+
+        // Select all on form submit
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+          for (var i = 0;i < orders.options.length;++i) {
+            orders.options[i].selected = true;
+          }
+        });
+      });
+  </script>
   </head>
   <body>
     <h1>Bestellung</h1>
     <table>
       <tr>
-        <td><a href="#" id="add-magherita"><img src="../images/pizza.png"></a></td>
-        <td><span class="name">Magherita</span></td>
-        <td>4,00 €</td>
+        <td><a href="#" class="add-pizza" data-name="magherita" data-id="0"><img src="../images/pizza.png"></a></td>
+        <td><span id="magherita-name">Magherita</span></td>
+        <td id="magherita-price">4,00 €</td>
       </tr>
       <tr>
-        <td><a href="#" id="add-salami"><img src="../images/pizza.png"></a></td>
-        <td><span class="name">Salami</span></td>
-        <td>4,50 €</td>
+        <td><a href="#" class="add-pizza" data-name="salami" data-id="1"><img src="../images/pizza.png"></a></td>
+        <td><span id="salami-name">Salami</span></td>
+        <td id="salami-price">4,50 €</td>
       <tr>
-        <td><a href="#" id="add-hawaii"><img src="../images/pizza.png"></a></td>
-        <td><span class="name">Hawaii</span></td>
-        <td>5, 50 €</td>
+        <td><a href="#" class="add-pizza" data-name="hawaii" data-id="2"><img src="../images/pizza.png"></a></td>
+        <td><span id="hawaii-name">Hawaii</span></td>
+        <td id="hawaii-price">5,50 €</td>
       </tr>
     </table><br>
-    <select name="orders" multiple size="8">
-      <option>test</option>
-    </select>
-    <p id="sum">15,70 €</p>
-    <input type="text" placholder="Name, Adresse"><br>
-    <button type="button" id="delete-all">Alle Löschen</button>
-    <button type="button" id="delete-selected">Auswahl Löschen</button>
-    <button type="submit">Bestellen</button>
+    <form id="order-form" method="POST" action="http://www.fbi.h-da.de/cgi-bin/Echo.pl">
+      <select name="orders[]" id="orders" multiple size="8">
+        <option>test</option>
+      </select>
+      <p id="sum">15,70 €</p>
+      <input type="text" placholder="Name, Adresse"><br>
+      <button type="button" id="delete-all">Alle Löschen</button>
+      <button type="button" id="delete-selected">Auswahl Löschen</button>
+      <input type="submit" value="Bestellen">
+    </form>
   </body>
 </html>
 
