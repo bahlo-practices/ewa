@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>Bestellung</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Bestellung</h1>
+    <table>
+      <tr>
+        <td><a href="#" id="add-magherita"><img src="../images/pizza.png"></a></td>
+        <td><span class="name">Magherita</span></td>
+        <td>4,00 €</td>
+      </tr>
+      <tr>
+        <td><a href="#" id="add-salami"><img src="../images/pizza.png"></a></td>
+        <td><span class="name">Salami</span></td>
+        <td>4,50 €</td>
+      <tr>
+        <td><a href="#" id="add-hawaii"><img src="../images/pizza.png"></a></td>
+        <td><span class="name">Hawaii</span></td>
+        <td>5, 50 €</td>
+      </tr>
+    </table><br>
+    <select name="orders" multiple size="8">
+      <option>test</option>
+    </select><br><br>
+    <span id="sum">15,70 €</span><br><br>
+    <input type="text" placholder="Name, Adresse"><br>
+    <button type="button" id="delete-all">Alle Löschen</button>
+    <button type="button" id="delete-selected">Auswahl Löschen</button>
+    <button type="submit">Bestellen</button>
+  </body>
+</html>
+
