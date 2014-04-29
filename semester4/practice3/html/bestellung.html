@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>Bestellung</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Bestellung</h1>
+	<form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
+    <table>
+      <tr>
+        <td><a href="#" id="add-magherita"><img src="../images/pizza.png" alt="Magherita Pizza"></a></td>
+        <td><span class="name">Magherita</span></td>
+        <td>4,00 €</td>
+      </tr>
+      <tr>
+        <td><a href="#" id="add-salami"><img src="../images/pizza.png" alt="Salami Pizza"></a></td>
+        <td><span class="name">Salami</span></td>
+        <td>4,50 €</td>
+      <tr>
+        <td><a href="#" id="add-hawaii"><img src="../images/pizza.png" alt="Hawaii Pizza"></a></td>
+        <td><span class="name">Hawaii</span></td>
+        <td>5, 50 €</td>
+      </tr>
+    </table>
+    <select name="orders" multiple size="8">
+      <option>test</option>
+    </select>
+    <p><span id="sum">15,70</span>€</p> 
+    <input type="text" placeholder="Name, Adresse" name="Adresse">
+    <button type="button" id="delete-all">Alle Löschen</button>
+    <button type="button" id="delete-selected">Auswahl Löschen</button>
+    <button type="submit">Bestellen</button>
+	</form>
+  </body>
+</html>
+
