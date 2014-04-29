@@ -7,6 +7,7 @@
   <body>
     <h1>Fahrer</h1>
     <form class="order" action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
+	  <article class="Bestellung">
       <h3>Müller, Freßgasse 11, 65000 Frankfurt</h3>
       <p>Tonno, Calzone, Margherita, Hawaii, Tonno</p>
       <p>Preis: 13,00 €</p>
@@ -17,11 +18,14 @@
           <td>ausgeliefert</td>
         </tr>
         <tr>
-          <td><input type="radio" name="status[0]" onclick="this.form.submit()" value="0"></td>
-          <td><input type="radio" name="status[0]" onclick="this.form.submit()" value="1" checked></td>
-          <td><input type="radio" name="status[0]" onclick="this.form.submit()" value="2"></td>
+          <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="0"></td>
+          <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="1" checked></td>
+          <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="2"></td>
         </tr>
       </table>
+	  </article
+
+	  <article class="Bestellung">
       <h3>Meier, Hauptstr. 5</h3>
       <p>Tonno, Tonno, Margherita</p>
       <p>Preis: 10,50 €</p>
@@ -32,11 +36,13 @@
           <td>ausgeliefert</td>
         </tr>
         <tr>
-          <td><input type="radio" name="status[1]" onclick="this.form.submit()" value="0"></td>
-          <td><input type="radio" name="status[1]" onclick="this.form.submit()" value="1" checked></td>
-          <td><input type="radio" name="status[1]" onclick="this.form.submit()" value="2"></td>
+          <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="0"></td>
+          <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="1" checked></td>
+          <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="2"></td>
         </tr>
       </table>
+	  </article>
+	  
     </form>
   </body>
 </html>
