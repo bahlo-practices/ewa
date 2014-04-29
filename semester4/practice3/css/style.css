@@ -12,5 +12,8 @@ header {
   border-bottom: 2px solid #000;
   width: 100%;
   padding: 8px 32px;
-  text-align:center;
+}
+
+main {
+  margin: 16px;
 }

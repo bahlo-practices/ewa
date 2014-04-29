@@ -9,37 +9,39 @@
     <header>
       <h1>Bäcker</h1>
     </header>
-    <form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>bestellt</th>
-            <th>im Ofen</th>
-            <th>fertig</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Magherita</td>
-            <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="0" checked></td>
-            <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="1"></td>
-            <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="2"></td>
-          </tr>
-          <tr>
-            <td>Magherita</td>
-            <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="0"></td>
-            <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="1" checked></td>
-            <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="2"></td>
-          </tr>
-          <tr>
-            <td>Hawaii</td>
-            <td><input type="radio" name="bestellid2" onclick="this.form.submit()" value="0"></td>
-            <td><input type="radio" name="bestellid2" onclick="this.form.submit()" value="1" checked></td>
-            <td><input type="radio" name="bestellid2" onclick="this.form.submit()" value="2"></td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
+    <main>
+      <form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>bestellt</th>
+              <th>im Ofen</th>
+              <th>fertig</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Magherita</td>
+              <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="0" checked></td>
+              <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="1"></td>
+              <td><input type="radio" name="bestellid0" onclick="this.form.submit()" value="2"></td>
+            </tr>
+            <tr>
+              <td>Magherita</td>
+              <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="0"></td>
+              <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="1" checked></td>
+              <td><input type="radio" name="bestellid1" onclick="this.form.submit()" value="2"></td>
+            </tr>
+            <tr>
+              <td>Hawaii</td>
+              <td><input type="radio" name="bestellid2" onclick="this.form.submit()" value="0"></td>
+              <td><input type="radio" name="bestellid2" onclick="this.form.submit()" value="1" checked></td>
+              <td><input type="radio" name="bestellid2" onclick="this.form.submit()" value="2"></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </main>
   </body>
 </html>
