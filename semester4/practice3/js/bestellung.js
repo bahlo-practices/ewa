@@ -90,7 +90,13 @@ window.addEventListener('load', function() {
       // Prevent submission of form
       e.preventDefault();
 
-      alert('Bitte wählen Sie mindestens eine Pizza');
+      alert('Bitte wählen Sie mindestens eine Pizza.');
+    } else if (addressField.value.length <= 0) {
+      // Prevent submission of form
+      e.preventDefault();
+
+      alert('Bitte geben Sie eine Adresse ein.');
+      addressField.focus();
     } else {
       // Select all items
       for (i = 0; i < cart.options.length; ++i) {

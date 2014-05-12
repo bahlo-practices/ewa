@@ -20,7 +20,7 @@ main {
 
 hr {
   border: none;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #111;
   margin: 16px 0;
 }
 
@@ -38,9 +38,17 @@ button,
   padding: 8px;
   margin: 0;
   text-decoration: none;
-  color: #000;
+  color: #111;
   font-size: 13px;
 }
+  button:hover,
+  button:active,
+  .button:hover,
+  .button:active {
+    background: #FF7C00;
+    color: #fff;
+  }
+
 
 .nav {
   margin: 16px 0;
