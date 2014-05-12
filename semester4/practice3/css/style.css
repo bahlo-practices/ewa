@@ -4,13 +4,14 @@ body {
 }
 
 header {
-  background: rgb(143, 202, 255);
-  border-bottom: 2px solid #000;
+  background: #0074D9;
+  color: #fff;
   width: 100%;
   padding: 8px 0;
 }
   header h1 {
-    margin: 0 32px;
+    font-weight: normal;
+    margin: 0 16px;
   }
 
 main {
@@ -23,16 +24,31 @@ hr {
   margin: 16px 0;
 }
 
-button {
-  border: 1px solid rgba(0, 0, 0, .1);
+input {
+  font: inherit;
   padding: 8px;
-  background: #d3d3d3;
-  cursor: pointer;
+  font-size: 13px;
 }
-  button:hover,
-  button:focus,
-  button:active {
-    background: #eee;
+
+button,
+.button {
+  background: #FFDC00;
+  border: 1px solid rgba(0, 0, 0, .1);
+  cursor: pointer;
+  padding: 8px;
+  margin: 0;
+  text-decoration: none;
+  color: #000;
+  font-size: 13px;
+}
+
+.nav {
+  margin: 16px 0;
+}
+  .nav li {
+    float: left;
+    list-style: none;
+    margin-right: 4px;
   }
 
 .menu {
