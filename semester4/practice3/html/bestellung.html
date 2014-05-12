@@ -11,7 +11,6 @@
       <h1>Bestellung</h1>
     </header>
     <main>
-      <form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
         <table class="menu">
           <tr>
             <td>
@@ -50,14 +49,15 @@
           </tr>
         </table>
         <div class="cart">
-          <select name="orders" id="orders" multiple size="8"></select>
-          <p><span id="sum">0</span> €</p>
-          <input type="text" placeholder="Name, Adresse" name="address" id="address">
-          <button type="reset" id="delete-all">Alle Löschen</button>
-          <button type="button" id="delete-selected">Auswahl Löschen</button>
-          <button type="submit">Bestellen</button>
+          <form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
+            <select name="orders" id="orders" multiple size="8"></select>
+            <p><span id="sum">0</span> €</p>
+            <input type="text" placeholder="Name, Adresse" name="address" id="address">
+            <button type="reset" id="delete-all">Alle Löschen</button>
+            <button type="button" id="delete-selected">Auswahl Löschen</button>
+            <button type="submit">Bestellen</button>
+          </form>
         </div>
-      </form>
     </main>
   </body>
 </html>
