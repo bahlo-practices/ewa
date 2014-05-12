@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
   var cart, priceTag, sum, updateSum, addPizza, pizzaElements, i, removePizzas,
       removeSelectedPizzas;
 
-  // Define variables
+  // Initialize variables
   cart = document.querySelector('#orders');
   priceTag = document.querySelector('#sum');
   sum = 0;
