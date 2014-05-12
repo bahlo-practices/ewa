@@ -2,7 +2,8 @@
 
 // Wait until DOM content is ready
 window.addEventListener('load', function() {
-  var cart, priceTag, sum, updateSum, addPizza, pizzaElements, i, removePizzas, removeSelectedPizzas;
+  var cart, priceTag, sum, updateSum, addPizza, pizzaElements, i, removePizzas,
+      removeSelectedPizzas;
 
   // Define variables
   cart = document.querySelector('#orders');
@@ -73,9 +74,21 @@ window.addEventListener('load', function() {
   }
 
   // Delete all button
-  document.querySelector('#delete-all').addEventListener('click', removePizzas);
+  document.querySelector('#delete-all')
+    .addEventListener('click', removePizzas);
 
   // Delete selected button
   document.querySelector('#delete-selected')
     .addEventListener('click', removeSelectedPizzas);
+
+  document.querySelector('form').addEventListener('submit', function(e) {
+    var addressField;
+
+    addressField = document.querySelector('#address');
+
+    if (addressField.value.length < 1) {
+      e.preventDefault();
+      addressField.focus();
+    }
+  });
 });
