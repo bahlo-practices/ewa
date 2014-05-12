@@ -40,9 +40,7 @@ button {
 }
 
 .cart {
-  float: right;
-  width: 320px;
-  text-align: right;
+  float: left;
 }
   .cart select, input {
     width: 100%;
