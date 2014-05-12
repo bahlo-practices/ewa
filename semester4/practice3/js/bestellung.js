@@ -53,13 +53,13 @@ window.addEventListener('load', function() {
   removeSelectedPizzas = function() {
     var i, option, price;
 
-    for (i = 0; i < cart.options.length; ++i) {
+    for (i = cart.options.length - 1; i >= 0; --i) {
       option = cart.options[i];
 
       if (option.selected) {
         // Remove it
         price = parseInt(option.getAttribute('data-price'), 10);
-        cart.options.remove(--i);
+        cart.options.remove(i);
         updateSum(sum - price / 100)
       }
     }
