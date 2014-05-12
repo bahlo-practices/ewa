@@ -2,8 +2,7 @@
 
 // Wait until DOM content is ready
 window.addEventListener('load', function() {
-  var cart, priceTag, sum, updateSum, addPizza, id, name, price, option,
-      pizzaElements, i, resetPizzas;
+  var cart, priceTag, sum, updateSum, addPizza, pizzaElements, i, removePizzas, removeSelectedPizzas;
 
   // Define variables
   cart = document.querySelector('#orders');
@@ -23,6 +22,8 @@ window.addEventListener('load', function() {
    * Adds pizzas to the cart
    */
   addPizza = function() {
+    var id, name, price, option;
+
     // Get attributes from HTML
     id = this.getAttribute('data-id');
     name = this.getAttribute('data-name');
@@ -37,6 +38,32 @@ window.addEventListener('load', function() {
     updateSum(sum + price / 100);
   };
 
+  /**
+   * Resets the selected pizzas
+   */
+  removePizzas = function() {
+    cart.innerHTML = '';
+    updateSum(0);
+  }
+
+  /**
+   * Removes the selected pizzas
+   */
+  removeSelectedPizzas = function() {
+    var i, option, price;
+
+    for (i = 0; i < cart.options.length; ++i) {
+      option = cart.options[i];
+
+      if (option.selected) {
+        // Remove it
+        price = parseInt(option.getAttribute('data-price'), 10);
+        cart.options.remove(i);
+        updateSum(sum - price / 100)
+      }
+    }
+  }
+
   // Get all pizza-elements and add click event listener for each
   for (i = 0,
        pizzaElements = document.querySelectorAll('.add-pizza');
@@ -45,14 +72,10 @@ window.addEventListener('load', function() {
     pizzaElements[i].addEventListener('click', addPizza);
   }
 
-  /**
-   * Resets the selected pizzas
-   */
-  resetPizzas = function() {
-    cart.innerHTML = '';
-    updateSum(0);
-  }
+  // Delete all button
+  document.querySelector('#delete-all').addEventListener('click', removePizzas);
 
-  // Reset button
-  document.querySelector('#delete-all').addEventListener('click', resetPizzas);
+  // Delete selected button
+  document.querySelector('#delete-selected')
+    .addEventListener('click', removeSelectedPizzas);
 });
