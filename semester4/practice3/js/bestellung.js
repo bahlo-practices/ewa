@@ -86,12 +86,11 @@ window.addEventListener('load', function() {
 
     addressField = document.querySelector('#address');
 
-    if (addressField.value.length < 1) {
+    if (cart.options.length === 0) {
       // Prevent submission of form
       e.preventDefault();
 
-      // Focus address field
-      addressField.focus();
+      alert('Bitte wählen Sie mindestens eine Pizza');
     } else {
       // Select all items
       for (i = 0; i < cart.options.length; ++i) {
