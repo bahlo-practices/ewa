@@ -82,13 +82,21 @@ window.addEventListener('load', function() {
     .addEventListener('click', removeSelectedPizzas);
 
   document.querySelector('form').addEventListener('submit', function(e) {
-    var addressField;
+    var addressField, i;
 
     addressField = document.querySelector('#address');
 
     if (addressField.value.length < 1) {
+      // Prevent submission of form
       e.preventDefault();
+
+      // Focus address field
       addressField.focus();
+    } else {
+      // Select all items
+      for (i = 0; i < cart.options.length; ++i) {
+        cart.options[i].selected = true;
+      }
     }
   });
 });

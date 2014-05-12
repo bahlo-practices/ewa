@@ -50,8 +50,8 @@
         </table>
         <div class="cart">
           <form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
-            <select name="orders" id="orders" multiple size="8"></select>
-            <p><span id="sum">0</span> €</p>
+            <select name="orders[]" id="orders" multiple size="8"></select>
+            <p><span id="sum">0.00</span> €</p>
             <input type="text" placeholder="Name, Adresse" name="address" id="address">
             <button type="reset" id="delete-all">Alle Löschen</button>
             <button type="button" id="delete-selected">Auswahl Löschen</button>
