@@ -59,7 +59,7 @@ window.addEventListener('load', function() {
       if (option.selected) {
         // Remove it
         price = parseInt(option.getAttribute('data-price'), 10);
-        cart.options.remove(i);
+        cart.options.remove(--i);
         updateSum(sum - price / 100)
       }
     }
