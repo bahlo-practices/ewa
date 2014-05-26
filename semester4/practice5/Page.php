@@ -77,7 +77,16 @@ abstract class Page
         $headline = htmlspecialchars($headline);
         header("Content-type: text/html; charset=UTF-8");
 
-        include __DIR__ . '/templates/header.php';
+        echo <<< EOT
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <title>{$headline}</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+EOT;
     }
 
     /**
@@ -87,7 +96,10 @@ abstract class Page
      */
     protected function generatePageFooter()
     {
-        include __DIR__ . '/templates/footer.php';
+        echo <<< EOT
+    </body>
+  </html>
+EOT;
     }
 
     /**
