@@ -1,0 +1,4 @@
+AuthName "Protected realm"
+Order Deny,Allow
+Deny from all
+

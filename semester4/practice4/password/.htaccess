@@ -1,4 +1,5 @@
 AuthName "Password-protected realm"
 AuthUserFile ../.htpasswd
 AuthType Basic
-require valid-user
+Require valid-user
+
