@@ -49,7 +49,7 @@ abstract class Page
      */
     protected function __construct()
     {
-        $this->_database = /* to do: create instance of class MySQLi */;
+        //$this->_database = [> to do: create instance of class MySQLi <];
     }
 
     /**
@@ -77,8 +77,7 @@ abstract class Page
         $headline = htmlspecialchars($headline);
         header("Content-type: text/html; charset=UTF-8");
 
-        // to do: output common beginning of HTML code
-        // including the individual headline
+        include __DIR__ . '/templates/header.php';
     }
 
     /**
@@ -88,7 +87,7 @@ abstract class Page
      */
     protected function generatePageFooter()
     {
-        // to do: output common end of HTML code
+        include __DIR__ . '/templates/footer.php';
     }
 
     /**
