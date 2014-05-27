@@ -1,6 +1,6 @@
 <?php	// UTF-8 marker äöüÄÖÜß€
 /**
- * Class PageTemplate for the exercises of the EWA lecture
+ * Class Baecker for the exercises of the EWA lecture
  * Demonstrates use of PHP including class and OO.
  * Implements Zend coding standards.
  * Generate documentation with Doxygen or phpdoc
@@ -16,7 +16,6 @@
  * @link     http://www.fbi.h-da.de
  */
 
-// to do: change name 'PageTemplate' throughout this file
 require_once './Page.php';
 
 /**
@@ -31,7 +30,7 @@ require_once './Page.php';
  * @author   Bernhard Kreling, <b.kreling@fbi.h-da.de>
  * @author   Ralf Hahn, <ralf.hahn@h-da.de>
  */
-class PageTemplate extends Page
+class Baecker extends Page
 {
     // to do: declare reference variables for members
     // representing substructures/blocks
@@ -120,7 +119,7 @@ class PageTemplate extends Page
     public static function main()
     {
         try {
-            $page = new PageTemplate();
+            $page = new Baecker();
             $page->processReceivedData();
             $page->generateView();
         }
@@ -133,7 +132,7 @@ class PageTemplate extends Page
 
 // This call is starting the creation of the page.
 // That is input is processed and output is created.
-PageTemplate::main();
+Baecker::main();
 
 // Zend standard does not like closing php-tag!
 // PHP doesn't require the closing tag (it is assumed when the file ends).
