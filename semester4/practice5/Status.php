@@ -17,6 +17,7 @@
  */
 
 require_once './Page.php';
+require_once './Statustabelle.php';
 
 /**
  * This is a template for top level classes, which represent
@@ -32,8 +33,10 @@ require_once './Page.php';
  */
 class Status extends Page
 {
-    // to do: declare reference variables for members
-    // representing substructures/blocks
+    /**
+     * @var Statustabelle
+     */
+    private $statusTabelle;
 
     /**
      * Instantiates members (to be defined above).
@@ -45,7 +48,8 @@ class Status extends Page
     protected function __construct()
     {
         parent::__construct();
-        // to do: instantiate members representing substructures/blocks
+
+        $this->statusTabelle = new Statustabelle();
     }
 
     /**
@@ -83,9 +87,8 @@ class Status extends Page
     protected function generateView()
     {
         $this->getViewData();
-        $this->generatePageHeader('to do: change headline');
-        // to do: call generateView() for all members
-        // to do: output view of this page
+        $this->generatePageHeader('Status');
+        $this->statusTabelle->generateView();
         $this->generatePageFooter();
     }
 

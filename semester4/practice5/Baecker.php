@@ -32,8 +32,10 @@ require_once './Page.php';
  */
 class Baecker extends Page
 {
-    // to do: declare reference variables for members
-    // representing substructures/blocks
+    /**
+     * @var Statustabelle
+     */
+    private $statusTabelle;
 
     /**
      * Instantiates members (to be defined above).
@@ -45,7 +47,8 @@ class Baecker extends Page
     protected function __construct()
     {
         parent::__construct();
-        // to do: instantiate members representing substructures/blocks
+
+        $this->statusTabelle = new Statustabelle();
     }
 
     /**
@@ -83,9 +86,8 @@ class Baecker extends Page
     protected function generateView()
     {
         $this->getViewData();
-        $this->generatePageHeader('to do: change headline');
-        // to do: call generateView() for all members
-        // to do: output view of this page
+        $this->generatePageHeader('Bäcker');
+        $this->statusTabelle->generateView();
         $this->generatePageFooter();
     }
 
