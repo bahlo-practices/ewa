@@ -112,6 +112,12 @@ class Status extends Page
 
 
         $this->statusTabelle->generateView('status', $url, $columns, $data);
+
+        echo <<<EOF
+        <ul>
+          <li><a href="bestellung.html">Neue Bestellung</a></li>
+       </ul>
+EOF;
         $this->generatePageFooter();
     }
 
