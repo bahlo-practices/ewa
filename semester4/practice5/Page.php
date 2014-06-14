@@ -84,6 +84,8 @@ abstract class Page
     <title>{$headline}</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/bestellung.js"></script>
+    <script src="js/radio-submit.js"></script>
   </head>
   <body>
     <header>
