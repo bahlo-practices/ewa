@@ -17,8 +17,8 @@
  */
 
 require_once './Page.php';
-require_once './Speisekarte.php';
-require_once './Warenkorb.php';
+require_once './blocks/Speisekarte.php';
+require_once './blocks/Warenkorb.php';
 
 /**
  * This is a template for top level classes, which represent
