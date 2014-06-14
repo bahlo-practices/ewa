@@ -103,20 +103,25 @@ EOF;
           </thead>
           <tbody>
 EOF;
-        foreach ($data as $key => $row) {
-          $checked = array(
-            $row['values'][0] == 1 ? ' checked' : '',
-            $row['values'][1] == 1 ? ' checked' : '',
-            $row['values'][2] == 1 ? ' checked' : ''
-          );
+
+        $disabled = $editable === false ? ' disabled' : '';
+        foreach ($data as $i => $row) {
           echo <<<EOF
               <tr>
                 <td>{$row['name']}</td>
-                <td><input type="radio" name="bestellid{$key}" class="submit-form" value="{$row['values'][0]}"{$checked[0]}></td>
-                <td><input type="radio" name="bestellid{$key}" class="submit-form" value="{$row['values'][1]}"{$checked[1]}></td>
-                <td><input type="radio" name="bestellid{$key}" class="submit-form" value="{$row['values'][2]}"{$checked[2]}></td>
-              </tr>
 EOF;
+
+          $checked = array_map(function($value) {
+            return $value ? ' checked' : '';
+          }, $row['values']);
+          foreach ($row['values'] as $j => $field) {
+            echo <<<EOF
+                  <td>
+                    <input type="radio" name="bestellid{$i}" class="submit-form" value="{$field}"{$checked[$j]}{$disabled}></td>
+EOF;
+          }
+
+          echo '</tr>';
         }
         echo <<<EOF
           </tbody>

@@ -17,6 +17,7 @@
  */
 
 require_once './Page.php';
+require_once './blocks/Statustabelle.php';
 
 /**
  * This is a template for top level classes, which represent
