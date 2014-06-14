@@ -17,6 +17,7 @@
  */
 
 require_once './Page.php';
+require_once './blocks/Statustabelle.php';
 
 /**
  * This is a template for top level classes, which represent
@@ -48,7 +49,7 @@ class Baecker extends Page
     {
         parent::__construct();
 
-        $this->statusTabelle = new Statustabelle();
+        $this->statusTabelle = new Statustabelle($this->_database);
     }
 
     /**
@@ -87,7 +88,28 @@ class Baecker extends Page
     {
         $this->getViewData();
         $this->generatePageHeader('Bäcker');
-        $this->statusTabelle->generateView();
+
+        // TODO: Make this dynamic
+        $columns = array('bestellt', 'im Ofen', 'fertig');
+        $data    = array(
+          array(
+            'name' => 'Magherita',
+            'values' => array(1, 0, 0)
+          ),
+          array(
+            'name' => 'Magherita',
+            'values' => array(0, 1, 0)
+          ),
+          array(
+            'name' => 'Hawaii',
+            'values' => array(0, 0, 1)
+          )
+        );
+        $url = 'http://www.fbi.h-da.de/cgi-bin/Echo.pl';
+
+
+        $this->statusTabelle->generateView('status', $url,
+                                           $columns, $data, true);
         $this->generatePageFooter();
     }
 

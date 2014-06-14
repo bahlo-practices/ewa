@@ -72,18 +72,57 @@ class Statustabelle
      * If the block contains other blocks, delegate the generation of their
 	 * parts of the view to them.
      *
-     * @param $id $id is the unique (!!) id to be used as id in the div-tag
+     * @param  string  $id The unique (!!) id to be used as id in the div-tag
+     * @param  string  $url
+     * @param  array   $columns
+     * @param  array   $data
+     * @param  boolean $editable
      *
      * @return none
      */
-    public function generateView($id = "")
+    public function generateView($id = "", $url, array $columns, array $data,
+                                 $editable = false)
     {
         $this->getViewData();
         if ($id) {
             $id = "id=\"$id\"";
         }
         echo "<div $id>\n";
-        // to do: call generateView() for all members
+        echo <<<EOF
+      <form action="{$url}" method="POST">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+EOF;
+        foreach ($columns as $column) {
+          echo "<th>$column</th>";
+        }
+        echo <<<EOF
+            </tr>
+          </thead>
+          <tbody>
+EOF;
+        foreach ($data as $key => $row) {
+          $checked = array(
+            $row['values'][0] == 1 ? ' checked' : '',
+            $row['values'][1] == 1 ? ' checked' : '',
+            $row['values'][2] == 1 ? ' checked' : ''
+          );
+          echo <<<EOF
+              <tr>
+                <td>{$row['name']}</td>
+                <td><input type="radio" name="bestellid{$key}" class="submit-form" value="{$row['values'][0]}"{$checked[0]}></td>
+                <td><input type="radio" name="bestellid{$key}" class="submit-form" value="{$row['values'][1]}"{$checked[1]}></td>
+                <td><input type="radio" name="bestellid{$key}" class="submit-form" value="{$row['values'][2]}"{$checked[2]}></td>
+              </tr>
+EOF;
+        }
+        echo <<<EOF
+          </tbody>
+        </table>
+      </form>
+EOF;
         echo "</div>\n";
     }
 
