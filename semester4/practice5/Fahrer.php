@@ -17,7 +17,7 @@
  */
 
 require_once './Page.php';
-require_once './blocks/Statustabelle.php';
+require_once './blocks/DetailInfo.php';
 
 /**
  * This is a template for top level classes, which represent
@@ -84,9 +84,33 @@ class Fahrer extends Page
     protected function generateView()
     {
         $this->getViewData();
-        $this->generatePageHeader('to do: change headline');
-        // to do: call generateView() for all members
-        // to do: output view of this page
+        $this->generatePageHeader('Fahrer');
+
+        echo <<<EOF
+        <form class="order" action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
+EOF;
+        $data = array(
+          array(
+            'address' => 'Müller, Freßgasse 11, 65000 Frankfurt',
+            'list'    => 'Tonno, Calzone, Margherita, Hawaii, Tonno',
+            'price'   => 13.00
+          ),
+          array(
+            'address' => 'Meier, Hauptstr. 5',
+            'list'    => 'Tonno, Tonno, Margherita',
+            'price'   => 10.50
+          )
+        );
+        foreach ($data as $key => $order) {
+          $last = $key == count($data) - 1;
+          $info = new DetailInfo($this->_database);
+          $info->generateView(null, $order['address'], $order['list'],
+                              $order['price'], !$last);
+        }
+        echo <<<EOF
+        </form>
+EOF;
+
         $this->generatePageFooter();
     }
 
