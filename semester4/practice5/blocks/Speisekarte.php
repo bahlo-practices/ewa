@@ -93,7 +93,7 @@ class Speisekarte
                  data-id="0"
                  data-name="Magherita"
                  data-price="400">
-                <img src="../images/pizza.png" alt="Magherita Pizza">
+                <img src="images/pizza.png" alt="Magherita Pizza">
               </a>
             </td>
             <td><span class="name">Magherita</span></td>
@@ -105,7 +105,7 @@ class Speisekarte
                  data-id="1"
                  data-name="Salami"
                  data-price="350">
-                <img src="../images/pizza.png" alt="Salami Pizza">
+                <img src="images/pizza.png" alt="Salami Pizza">
               </a>
             </td>
             <td><span class="name">Salami</span></td>
@@ -116,7 +116,7 @@ class Speisekarte
                  data-id="2"
                  data-name="Hawaii"
                  data-price="550">
-                <img src="../images/pizza.png" alt="Hawaii Pizza">
+                <img src="images/pizza.png" alt="Hawaii Pizza">
               </a>
             </td>
             <td><span class="name">Hawaii</span></td>

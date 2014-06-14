@@ -86,6 +86,10 @@ abstract class Page
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <header>
+      <h1>{$headline}</h1>
+    </header>
+    <main>
 EOT;
     }
 
@@ -97,6 +101,7 @@ EOT;
     protected function generatePageFooter()
     {
         echo <<< EOT
+      </main>
     </body>
   </html>
 EOT;
