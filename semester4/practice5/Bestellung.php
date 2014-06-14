@@ -17,6 +17,8 @@
  */
 
 require_once './Page.php';
+require_once './Speisekarte.php';
+require_once './Warenkorb.php';
 
 /**
  * This is a template for top level classes, which represent
@@ -32,8 +34,15 @@ require_once './Page.php';
  */
 class Bestellung extends Page
 {
-    // to do: declare reference variables for members
-    // representing substructures/blocks
+    /**
+     * @var Speisekarte
+     */
+    private $_speisekarte;
+
+    /**
+     * @var Warenkorb
+     */
+    private $_warenkorb;
 
     /**
      * Instantiates members (to be defined above).
@@ -45,7 +54,10 @@ class Bestellung extends Page
     protected function __construct()
     {
         parent::__construct();
-        // to do: instantiate members representing substructures/blocks
+
+        // Initialize members
+        $this->_speisekarte = new Speisekarte($this->_database);
+        $this->_warenkorb   = new Warenkorb($this->_database);
     }
 
     /**
@@ -83,9 +95,11 @@ class Bestellung extends Page
     protected function generateView()
     {
         $this->getViewData();
-        $this->generatePageHeader('to do: change headline');
-        // to do: call generateView() for all members
-        // to do: output view of this page
+        $this->generatePageHeader('Bestellung');
+
+        $this->_speisekarte->generateView('menu');
+        $this->_warenkorb->generateView('cart');
+
         $this->generatePageFooter();
     }
 

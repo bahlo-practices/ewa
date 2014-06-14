@@ -84,6 +84,46 @@ class Speisekarte
         }
         echo "<div $id>\n";
         // to do: call generateView() for all members
+        // TODO: Split into blocks
+        echo <<<EOF
+        <table class="menu">
+          <tr>
+            <td>
+              <a href="#" class="add-pizza"
+                 data-id="0"
+                 data-name="Magherita"
+                 data-price="400">
+                <img src="../images/pizza.png" alt="Magherita Pizza">
+              </a>
+            </td>
+            <td><span class="name">Magherita</span></td>
+            <td>4,00 €</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#" class="add-pizza"
+                 data-id="1"
+                 data-name="Salami"
+                 data-price="350">
+                <img src="../images/pizza.png" alt="Salami Pizza">
+              </a>
+            </td>
+            <td><span class="name">Salami</span></td>
+            <td>4,50 €</td>
+          <tr>
+            <td>
+              <a href="#" class="add-pizza"
+                 data-id="2"
+                 data-name="Hawaii"
+                 data-price="550">
+                <img src="../images/pizza.png" alt="Hawaii Pizza">
+              </a>
+            </td>
+            <td><span class="name">Hawaii</span></td>
+            <td>5, 50 €</td>
+          </tr>
+        </table>
+EOF;
         echo "</div>\n";
     }
 

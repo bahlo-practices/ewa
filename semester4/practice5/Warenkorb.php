@@ -84,6 +84,18 @@ class Warenkorb
         }
         echo "<div $id>\n";
         // to do: call generateView() for all members
+        echo <<<EOF
+        <div class="cart">
+          <form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
+            <select name="orders[]" id="orders" multiple size="8"></select>
+            <p><span id="sum">0.00</span> €</p>
+            <input type="text" placeholder="Name, Adresse" name="address" required id="address">
+            <button type="reset" id="delete-all">Alle Löschen</button>
+            <button type="button" id="delete-selected">Auswahl Löschen</button>
+            <button type="submit">Bestellen</button>
+          </form>
+        </div>
+EOF;
         echo "</div>\n";
     }
 
