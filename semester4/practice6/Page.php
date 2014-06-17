@@ -49,7 +49,8 @@ abstract class Page
      */
     protected function __construct()
     {
-        //$this->_database = [> to do: create instance of class MySQLi <];
+        $this->_database = new mysqli('localhost', 'root', 'root',
+                                      'pizzaservice');
     }
 
     /**
@@ -59,7 +60,7 @@ abstract class Page
      */
     protected function __destruct()
     {
-        // to do: close database
+        $this->_database->close();
     }
 
     /**
