@@ -76,17 +76,16 @@ class Warenkorb
      *
      * @return none
      */
-    public function generateView($id = "")
+    public function generateView($id = "", $url)
     {
         $this->getViewData();
         if ($id) {
             $id = "id=\"$id\"";
         }
         echo "<div $id>\n";
-        // to do: call generateView() for all members
         echo <<<EOF
         <div class="cart">
-          <form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
+          <form action="{$url}" method="POST">
             <select name="orders[]" id="orders" multiple size="8"></select>
             <p><span id="sum">0.00</span> €</p>
             <input type="text" placeholder="Name, Adresse" name="address" required id="address">

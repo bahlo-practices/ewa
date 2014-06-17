@@ -85,6 +85,7 @@ class Speisekarte
         echo "<div $id>\n";
         echo '<table class="menu">';
         foreach ($pizzas as $pizza) {
+          $formattedPrice = number_format($pizza['price'] / 100, 2);
           echo <<<EOF
           <tr>
             <td>
@@ -96,7 +97,7 @@ class Speisekarte
               </a>
             </td>
             <td><span class="name">{$pizza['name']}</span></td>
-            <td>{$pizza['price']} €</td>
+            <td>{$formattedPrice} €</td>
           </tr>
 EOF;
         }

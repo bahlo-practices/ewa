@@ -116,7 +116,7 @@ class Bestellung extends Page
         $this->generatePageHeader('Bestellung');
 
         $this->_speisekarte->generateView('menu', $this->_pizzen);
-        $this->_warenkorb->generateView('cart');
+        $this->_warenkorb->generateView('cart', 'Bestellung.php');
 
         $this->generatePageFooter();
     }
@@ -133,7 +133,28 @@ class Bestellung extends Page
     protected function processReceivedData()
     {
         parent::processReceivedData();
-        // to do: call processReceivedData() for all members
+
+        if (isset($_POST['orders'], $_POST['address']) &&
+            count($_POST['orders']) > 0 &&
+            strlen($_POST['address']) > 0) {
+          $stmt = $this->_database->prepare('INSERT INTO bestellung
+                  (adresse, zeitpunkt) VALUES (?, CURRENT_TIMESTAMP)');
+          $stmt->bind_param('s', $_POST['address']);
+
+          if ($stmt->execute()) {
+            $orderId = $this->_database->insert_id;
+            $stmt->close();
+
+            foreach ($_POST['order'] as $order) {
+              $stmt = $this->_database->prepare('INSERT INTO angebot_bestellung
+                      (angebot_id, bestellung_id, status)
+                      VALUES (?, ?, ?)');
+              $stmt->bind_param('iii', $order, $orderId, 0);
+              $stmt->execute();
+              $stmt->close();
+            }
+          }
+        }
     }
 
     /**
