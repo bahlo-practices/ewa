@@ -88,8 +88,10 @@ class Statustabelle
             $id = "id=\"$id\"";
         }
         echo "<div $id>\n";
+        if ($url !== null) {
+          echo '<form action="' . $url . '" method="POST">';
+        }
         echo <<<EOF
-      <form action="{$url}" method="POST">
         <table>
           <thead>
             <tr>
@@ -110,24 +112,23 @@ EOF;
               <tr>
                 <td>{$row['name']}</td>
 EOF;
-
-          $checked = array_map(function($value) {
-            return $value ? ' checked' : '';
-          }, $row['values']);
-          foreach ($row['values'] as $j => $field) {
+          for ($j = 0; $j < 4; ++$j) {
+            $checked = $j == $row['status'] ? ' checked' : '';
             echo <<<EOF
                   <td>
-                    <input type="radio" name="bestellid{$i}" class="submit-form" value="{$field}"{$checked[$j]}{$disabled}></td>
+                    <input type="radio" name="bestellid{$i}" class="submit-form" value="{$field}"{$checked}{$disabled}>
+                  </td>
 EOF;
           }
 
-          echo '</tr>';
+          echo "</tr>\n";
         }
         echo <<<EOF
           </tbody>
         </table>
-      </form>
 EOF;
+      if ($url !== null) {
+        echo "</form>\n";
         echo "</div>\n";
     }
 

@@ -39,6 +39,11 @@ class Status extends Page
     private $statusTabelle;
 
     /**
+     * @var array
+     */
+    private $_order;
+
+    /**
      * Instantiates members (to be defined above).
      * Calls the constructor of the parent i.e. page class.
      * So the database connection is established.
@@ -72,7 +77,25 @@ class Status extends Page
      */
     protected function getViewData()
     {
-        // to do: fetch data for this view from the database
+      if (isset($_GET['order'])) {
+        $stmt = $this->_database->prepare('SELECT angebot.name,
+              angebot_bestellung.status
+              FROM angebot_bestellung
+              INNER JOIN angebot ON angebot.id = angebot_bestellung.angebot_id
+              WHERE angebot_bestellung.bestellung_id = ?');
+        $stmt->bind_param('i', $_GET['order']);
+
+        if ($stmt->execute()) {
+          $stmt->bind_result($name, $status);
+
+          while ($stmt->fetch()) {
+            $this->_order[] = array(
+              'name'   => $name,
+              'status' => $status
+            );
+          }
+        }
+      }
     }
 
     /**
@@ -90,28 +113,8 @@ class Status extends Page
         $this->generatePageHeader('Status');
 
         $columns = array('bestellt', 'im Ofen', 'fertig', 'unterwegs');
-        $data    = array(
-          array(
-            'name' => 'Magherita',
-            'values' => array(0, 0, 1, 0)
-          ),
-          array(
-            'name' => 'Salami',
-            'values' => array(0, 1, 0, 0)
-          ),
-          array(
-            'name' => 'Tonno',
-            'values' => array(0, 0, 1, 0)
-          ),
-          array(
-            'name' => 'Hawaii',
-            'values' => array(0, 0, 0, 1)
-          )
-        );
-        $url = 'http://www.fbi.h-da.de/cgi-bin/Echo.pl';
-
-
-        $this->statusTabelle->generateView('status', $url, $columns, $data);
+        $this->statusTabelle->generateView('status', null, $columns,
+                                           $this->_order);
 
         echo <<<EOF
         <ul>
