@@ -72,7 +72,24 @@ class Baecker extends Page
      */
     protected function getViewData()
     {
-        // to do: fetch data for this view from the database
+      $stmt = $this->_database->prepare('SELECT
+        angebot.name, angebot.id, angebot_bestellung.status
+        FROM angebot_bestellung
+        INNER JOIN angebot ON angebot.id = angebot_bestellung.angebot_id');
+
+      if ($stmt->execute()) {
+        $stmt->bind_result($name, $id, $status);
+        $this->_orders = array();
+
+        while ($stmt->fetch()) {
+          $this->_orders[] = array(
+            'id'     => $id,
+            'name'   => $name,
+            'status' => $status
+          );
+        }
+      }
+
     }
 
     /**
@@ -91,25 +108,10 @@ class Baecker extends Page
 
         // TODO: Make this dynamic
         $columns = array('bestellt', 'im Ofen', 'fertig');
-        $data    = array(
-          array(
-            'name' => 'Magherita',
-            'values' => array(1, 0, 0)
-          ),
-          array(
-            'name' => 'Magherita',
-            'values' => array(0, 1, 0)
-          ),
-          array(
-            'name' => 'Hawaii',
-            'values' => array(0, 0, 1)
-          )
-        );
-        $url = 'http://www.fbi.h-da.de/cgi-bin/Echo.pl';
-
+        $url = 'Baecker.php';
 
         $this->statusTabelle->generateView('status', $url,
-                                           $columns, $data, true);
+                                           $columns, $this->_orders, true);
         $this->generatePageFooter();
     }
 
