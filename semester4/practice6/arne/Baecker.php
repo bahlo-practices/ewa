@@ -73,16 +73,17 @@ class Baecker extends Page
     protected function getViewData()
     {
       $stmt = $this->_database->prepare('SELECT
-        angebot.name, angebot.id, angebot_bestellung.status
+        angebot.name, angebot.id, angebot_bestellung.id,
+        angebot_bestellung.status
         FROM angebot_bestellung
         INNER JOIN angebot ON angebot.id = angebot_bestellung.angebot_id');
 
       if ($stmt->execute()) {
-        $stmt->bind_result($name, $id, $status);
+        $stmt->bind_result($name, $id, $orderId, $status);
         $this->_orders = array();
 
         while ($stmt->fetch()) {
-          $this->_orders[] = array(
+          $this->_orders[$orderId] = array(
             'id'     => $id,
             'name'   => $name,
             'status' => $status
@@ -127,7 +128,17 @@ class Baecker extends Page
     protected function processReceivedData()
     {
         parent::processReceivedData();
-        // to do: call processReceivedData() for all members
+
+        if (isset($_POST['order'])) {
+          $stmt = $this->_database->prepare('UPDATE angebot_bestellung
+            SET status = ?
+            WHERE id = ?');
+
+          foreach ($_POST['order'] as $id => $status) {
+            $stmt->bind_param('ii', $status, $id);
+            $stmt->execute();
+          }
+        }
     }
 
     /**
