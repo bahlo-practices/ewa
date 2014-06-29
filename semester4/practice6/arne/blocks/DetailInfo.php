@@ -87,14 +87,15 @@ class DetailInfo
         $attributes = array('', '', '');
         $attributes[$order['status']] = ' checked';
 
-        $formattedPrice = number_format($order['price'] / 100, 2);
+        $price = number_format($order['price'] / 100, 2);
+        $address = htmlspecialchars($order['address']);
 
         echo "<div $id>\n";
         echo <<<EOF
         <article class="Bestellung">
-          <h3>{$order['address']}</h3>
+          <h3>{$address}</h3>
           <p>{$order['list']}</p>
-          <p>Preis: {$formattedPrice} €</p>
+          <p>Preis: {$price} €</p>
           <table>
             <tr>
               <td>gebacken</td>
