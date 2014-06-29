@@ -102,9 +102,9 @@ class DetailInfo
               <td>ausgeliefert</td>
             </tr>
             <tr>
-              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[0]}></td>
-              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[1]}></td>
-              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[2]}></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[0]} value="0"></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[1]} value="1"></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[2]} value="2"></td>
             </tr>
           </table>
         </article>

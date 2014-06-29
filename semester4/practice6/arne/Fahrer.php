@@ -145,7 +145,16 @@ EOF;
     protected function processReceivedData()
     {
         parent::processReceivedData();
-        // to do: call processReceivedData() for all members
+
+        if (isset($_POST)) {
+          $stmt = $this->_database->prepare('UPDATE bestellung
+            SET status = ?
+            WHERE id = ?');
+          foreach ($_POST as $id => $status) {
+            $stmt->bind_param('ii', $status, $id);
+            $stmt->execute();
+          }
+        }
     }
 
     /**
