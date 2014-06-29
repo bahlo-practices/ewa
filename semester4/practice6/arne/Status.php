@@ -77,13 +77,13 @@ class Status extends Page
      */
     protected function getViewData()
     {
-      if (isset($_GET['order'])) {
+      if (isset($_SESSION['lastOrder'])) {
         $stmt = $this->_database->prepare('SELECT angebot.name,
               angebot_bestellung.status
               FROM angebot_bestellung
               INNER JOIN angebot ON angebot.id = angebot_bestellung.angebot_id
               WHERE angebot_bestellung.bestellung_id = ?');
-        $stmt->bind_param('i', $_GET['order']);
+        $stmt->bind_param('i', $_SESSION['lastOrder']);
 
         if ($stmt->execute()) {
           $stmt->bind_result($name, $status);

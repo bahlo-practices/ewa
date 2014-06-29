@@ -51,6 +51,7 @@ abstract class Page
     {
         $this->_database = new mysqli('localhost', 'root', '',
                                       'pizzaservice');
+        session_start();
     }
 
     /**

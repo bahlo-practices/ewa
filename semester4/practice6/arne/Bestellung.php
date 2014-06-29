@@ -142,7 +142,7 @@ class Bestellung extends Page
           $stmt->bind_param('s', $_POST['address']);
 
           if ($stmt->execute()) {
-            $orderId = $this->_database->insert_id;
+            $_SESSION['lastOrder'] = $orderId = $this->_database->insert_id;
             $stmt->close();
 
             $status = 0;
