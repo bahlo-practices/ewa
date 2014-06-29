@@ -130,6 +130,7 @@ EOF;
       if ($url !== null) {
         echo "</form>\n";
         echo "</div>\n";
+      }
     }
 
     /**

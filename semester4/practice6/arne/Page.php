@@ -49,7 +49,7 @@ abstract class Page
      */
     protected function __construct()
     {
-        $this->_database = new mysqli('localhost', 'root', 'root',
+        $this->_database = new mysqli('localhost', 'root', '',
                                       'pizzaservice');
     }
 

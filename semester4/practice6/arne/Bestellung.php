@@ -94,7 +94,7 @@ class Bestellung extends Page
           $this->_pizzen[] = array(
             'id'    => $id,
             'name'  => $name,
-            'price' => $pice,
+            'price' => $price,
             'image' => $image
           );
         }
@@ -145,11 +145,12 @@ class Bestellung extends Page
             $orderId = $this->_database->insert_id;
             $stmt->close();
 
-            foreach ($_POST['order'] as $order) {
+            $status = 0;
+            foreach ($_POST['orders'] as $order) {
               $stmt = $this->_database->prepare('INSERT INTO angebot_bestellung
                       (angebot_id, bestellung_id, status)
                       VALUES (?, ?, ?)');
-              $stmt->bind_param('iii', $order, $orderId, 0);
+              $stmt->bind_param('iii', $order, $orderId, $status);
               $stmt->execute();
               $stmt->close();
             }
