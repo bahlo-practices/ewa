@@ -138,6 +138,37 @@ class Baecker extends Page
             $stmt->bind_param('ii', $status, $id);
             $stmt->execute();
           }
+
+          // Check if an order is finished
+          $stmt = $this->_database->prepare('SELECT bestellung_id, status
+            FROM angebot_bestellung');
+
+          if ($stmt->execute()) {
+            $orders = array();
+
+            $stmt->bind_result($orderId, $status);
+
+            while ($stmt->fetch()) {
+              // Create entry if not already exists
+              if (!isset($orders[$orderId])) {
+                $orders[$orderId] = true;
+              }
+
+              // Status 2 == finished
+              $orders[$orderId] = $orders[$orderId] && $status == 2;
+            }
+
+            $stmt = $this->_database->prepare('UPDATE bestellung
+              SET status = 0
+              WHERE id = ? AND status IS NULL');
+
+            foreach ($orders as $id => $finished) {
+              if ($finished) {
+                $stmt->bind_param('i', $id);
+                $stmt->execute();
+              }
+            }
+          }
         }
     }
 

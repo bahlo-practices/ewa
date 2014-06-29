@@ -74,6 +74,7 @@ class Fahrer extends Page
         INNER JOIN angebot ON angebot.id = angebot_bestellung.angebot_id
         INNER JOIN bestellung
           ON bestellung.id = angebot_bestellung.bestellung_id
+        WHERE bestellung.status >= 0
         ORDER BY bestellung.id');
 
       if ($stmt->execute()) {
