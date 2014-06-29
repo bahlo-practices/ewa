@@ -119,7 +119,7 @@ class Fahrer extends Page
         $this->generatePageHeader('Fahrer');
 
         echo <<<EOF
-        <form class="order" action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
+        <form class="order" action="Fahrer.php" method="POST">
 EOF;
         foreach ($this->_orders as $key => $order) {
           $last = $key == count($this->_orders) - 1;
