@@ -116,7 +116,7 @@ EOF;
             $checked = $j == $row['status'] ? ' checked' : '';
             echo <<<EOF
                   <td>
-                    <input type="radio" name="bestellid{$i}" class="submit-form" value="{$field}"{$checked}{$disabled}>
+                    <input type="radio" name="bestellid{$i}" class="submit-form"{$checked}{$disabled}>
                   </td>
 EOF;
           }

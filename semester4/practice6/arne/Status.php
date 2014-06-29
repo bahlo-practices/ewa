@@ -118,7 +118,7 @@ class Status extends Page
 
         echo <<<EOF
         <ul>
-          <li><a href="bestellung.html">Neue Bestellung</a></li>
+          <li><a href="Bestellung.php">Neue Bestellung</a></li>
        </ul>
 EOF;
         $this->generatePageFooter();
