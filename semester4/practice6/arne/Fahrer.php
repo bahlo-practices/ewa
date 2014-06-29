@@ -33,8 +33,7 @@ require_once './blocks/DetailInfo.php';
  */
 class Fahrer extends Page
 {
-    // to do: declare reference variables for members
-    // representing substructures/blocks
+    private $orders = array();
 
     /**
      * Instantiates members (to be defined above).
@@ -69,7 +68,40 @@ class Fahrer extends Page
      */
     protected function getViewData()
     {
-        // to do: fetch data for this view from the database
+      $stmt = $this->_database->prepare('SELECT angebot.name, angebot.preis,
+        bestellung.id, bestellung.adresse, bestellung.status
+        FROM angebot_bestellung
+        INNER JOIN angebot ON angebot.id = angebot_bestellung.angebot_id
+        INNER JOIN bestellung
+          ON bestellung.id = angebot_bestellung.bestellung_id
+        ORDER BY bestellung.id');
+
+      if ($stmt->execute()) {
+        $stmt->bind_result($name, $price, $id, $address, $status);
+        $this->_orders = array();
+
+        // This values will be resetted on every new order
+        $currentOrder = 0;
+        while ($stmt->fetch()) {
+          if ($id != $currentOrder) {
+            $this->_orders[$id] = array(
+              'list'   => '',
+              'price'  => 0,
+              'address' => $address,
+              'status' => $status
+            );
+            $currentOrder = $id;
+          }
+
+          // Add a comma
+          if (strlen($this->_orders[$id]['list']) > 0) {
+            $this->_orders[$id]['list'] .= ', ';
+          }
+
+          $this->_orders[$id]['list']  .= $name;
+          $this->_orders[$id]['price'] += $price;
+        }
+      }
     }
 
     /**
@@ -89,23 +121,10 @@ class Fahrer extends Page
         echo <<<EOF
         <form class="order" action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST">
 EOF;
-        $data = array(
-          array(
-            'address' => 'Müller, Freßgasse 11, 65000 Frankfurt',
-            'list'    => 'Tonno, Calzone, Margherita, Hawaii, Tonno',
-            'price'   => 13.00
-          ),
-          array(
-            'address' => 'Meier, Hauptstr. 5',
-            'list'    => 'Tonno, Tonno, Margherita',
-            'price'   => 10.50
-          )
-        );
-        foreach ($data as $key => $order) {
-          $last = $key == count($data) - 1;
+        foreach ($this->_orders as $key => $order) {
+          $last = $key == count($this->_orders) - 1;
           $info = new DetailInfo($this->_database);
-          $info->generateView(null, $order['address'], $order['list'],
-                              $order['price'], !$last);
+          $info->generateView(null, $key, $order, !$last);
         }
         echo <<<EOF
         </form>

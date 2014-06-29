@@ -76,20 +76,23 @@ class DetailInfo
      *
      * @return none
      */
-    public function generateView($id = "", $address, $list, $price,
-                                 $printHr = false)
-    {
+    public function generateView($id = "", $orderId, $order,
+                                 $printHr = false) {
         $this->getViewData();
+
         if ($id) {
             $id = "id=\"$id\"";
         }
-        echo "<div $id>\n";
 
+        $attributes = array('', '', '');
+        $attributes[$order['status']] = ' checked';
+
+        echo "<div $id>\n";
         echo <<<EOF
         <article class="Bestellung">
-          <h3>{$address}</h3>
-          <p>{$list}</p>
-          <p>Preis: {$price} €</p>
+          <h3>{$order['address']}</h3>
+          <p>{$order['list']}</p>
+          <p>Preis: {$order['price']} €</p>
           <table>
             <tr>
               <td>gebacken</td>
@@ -97,9 +100,9 @@ class DetailInfo
               <td>ausgeliefert</td>
             </tr>
             <tr>
-              <td><input type="radio" name="bestellid0" class="submit-form" value="0"></td>
-              <td><input type="radio" name="bestellid0" class="submit-form" value="1" checked></td>
-              <td><input type="radio" name="bestellid0" class="submit-form" value="2"></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[0]}></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[1]}></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[2]}></td>
             </tr>
           </table>
         </article>
