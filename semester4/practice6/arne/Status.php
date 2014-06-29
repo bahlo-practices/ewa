@@ -112,15 +112,20 @@ class Status extends Page
         $this->getViewData();
         $this->generatePageHeader('Status');
 
-        $columns = array('bestellt', 'im Ofen', 'fertig', 'unterwegs');
-        $this->statusTabelle->generateView('status', null, $columns,
-                                           $this->_order);
+        if (empty($this->_order)) {
+          echo '<p>Keine aktiven Bestellungen!</p>' . PHP_EOL;
+        } else {
+          $columns = array('bestellt', 'im Ofen', 'fertig', 'unterwegs');
+          $this->statusTabelle->generateView('status', null, $columns,
+                                             $this->_order);
 
-        echo <<<EOF
-        <ul>
-          <li><a href="Bestellung.php">Neue Bestellung</a></li>
-       </ul>
+          echo <<<EOF
+          <ul>
+            <li><a href="Bestellung.php">Neue Bestellung</a></li>
+         </ul>
 EOF;
+        }
+
         $this->generatePageFooter();
     }
 
