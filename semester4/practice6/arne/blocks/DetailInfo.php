@@ -70,7 +70,7 @@ class DetailInfo
     /**
      * Generates an HTML block embraced by a div-tag with the submitted id.
      * If the block contains other blocks, delegate the generation of their
-	 * parts of the view to them.
+     * parts of the view to them.
      *
      * @param $id $id is the unique (!!) id to be used as id in the div-tag
      *

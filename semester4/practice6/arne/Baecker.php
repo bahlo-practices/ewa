@@ -111,8 +111,8 @@ class Baecker extends Page
         $columns = array('bestellt', 'im Ofen', 'fertig');
         $url = 'Baecker.php';
 
-        $this->statusTabelle->generateView('status', $url,
-                                           $columns, $this->_orders, true);
+        $this->statusTabelle->generateView('status', $url, $columns,
+                                           $this->_orders, true);
         $this->generatePageFooter();
     }
 

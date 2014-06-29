@@ -150,6 +150,7 @@ EOF;
           $stmt = $this->_database->prepare('UPDATE bestellung
             SET status = ?
             WHERE id = ?');
+
           foreach ($_POST as $id => $status) {
             $stmt->bind_param('ii', $status, $id);
             $stmt->execute();

@@ -112,7 +112,7 @@ EOF;
               <tr>
                 <td>{$row['name']}</td>
 EOF;
-          for ($j = 0; $j < 4; ++$j) {
+          for ($j = 0; $j < count($columns); ++$j) {
             $checked = $j == $row['status'] ? ' checked' : '';
             echo <<<EOF
                   <td>
