@@ -74,17 +74,21 @@ class Baecker extends Page
     {
       $stmt = $this->_database->prepare('SELECT
         angebot.name, angebot.id, angebot_bestellung.id,
-        angebot_bestellung.status
+        angebot_bestellung.status, angebot_bestellung.bestellung_id
         FROM angebot_bestellung
         INNER JOIN angebot ON angebot.id = angebot_bestellung.angebot_id');
 
       if ($stmt->execute()) {
-        $stmt->bind_result($name, $id, $orderId, $status);
+        $stmt->bind_result($name, $supplyId, $id, $status, $orderId);
         $this->_orders = array();
 
         while ($stmt->fetch()) {
-          $this->_orders[$orderId] = array(
-            'id'     => $id,
+          if (!isset($this->_orders[$orderId])) {
+            $this->_orders[$orderId] = array();
+          }
+
+          $this->_orders[$orderId][$id] = array(
+            'id'     => $supplyId,
             'name'   => $name,
             'status' => $status
           );
@@ -111,8 +115,14 @@ class Baecker extends Page
         $columns = array('bestellt', 'im Ofen', 'fertig');
         $url = 'Baecker.php';
 
-        $this->statusTabelle->generateView('status', $url, $columns,
-                                           $this->_orders, true);
+        echo '<form action="' . $url . '" method="POST">';
+        foreach ($this->_orders as $order) {
+          $this->statusTabelle->generateView(null, null, $columns,
+                                             $order, true);
+          echo '<hr>' . PHP_EOL;
+        }
+        echo '</form>' . PHP_EOL;
+
         $this->generatePageFooter();
     }
 
