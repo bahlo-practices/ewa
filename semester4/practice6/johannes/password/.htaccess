@@ -1,4 +1,0 @@
-AuthName "Bitte einloggen"
-AuthUserFile C:\xampp\practice3\password\.htpasswd
-AuthType Basic
-Require valid-user
