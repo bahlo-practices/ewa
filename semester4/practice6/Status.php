@@ -79,16 +79,19 @@ class Status extends Page
     {
       if (isset($_SESSION['lastOrder'])) {
         $stmt = $this->_database->prepare('SELECT angebot.name,
-              angebot_bestellung.status
+              angebot_bestellung.status, bestellung.status
               FROM angebot_bestellung
               INNER JOIN angebot ON angebot.id = angebot_bestellung.angebot_id
+              INNER JOIN bestellung
+                ON bestellung.id = angebot_bestellung.bestellung_id
               WHERE angebot_bestellung.bestellung_id = ?');
         $stmt->bind_param('i', $_SESSION['lastOrder']);
 
         if ($stmt->execute()) {
-          $stmt->bind_result($name, $status);
+          $stmt->bind_result($name, $status, $orderStatus);
 
           while ($stmt->fetch()) {
+            $status = $orderStatus == 1 ? 3 : $status;
             $this->_order[] = array(
               'name'   => $name,
               'status' => $status

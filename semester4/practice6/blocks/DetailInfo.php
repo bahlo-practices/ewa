@@ -86,6 +86,7 @@ class DetailInfo
 
         $attributes = array('', '', '');
         $attributes[$order['status']] = ' checked';
+        $disabled = $order['status'] == 2 ? ' disabled' : '';
 
         $price = number_format($order['price'] / 100, 2);
         $address = htmlspecialchars($order['address']);
@@ -103,9 +104,9 @@ class DetailInfo
               <td>ausgeliefert</td>
             </tr>
             <tr>
-              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[0]} value="0"></td>
-              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[1]} value="1"></td>
-              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[2]} value="2"></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[0]}{$disabled} value="0"></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[1]}{$disabled} value="1"></td>
+              <td><input type="radio" name="{$orderId}" class="submit-form"{$attributes[2]}{$disabled} value="2"></td>
             </tr>
           </table>
         </article>

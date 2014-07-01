@@ -106,7 +106,6 @@ EOF;
           <tbody>
 EOF;
 
-        $disabled = $editable === false ? ' disabled' : '';
         foreach ($data as $i => $row) {
           echo <<<EOF
               <tr>
@@ -114,6 +113,11 @@ EOF;
 EOF;
           for ($j = 0; $j < count($columns); ++$j) {
             $checked = $j == $row['status'] ? ' checked' : '';
+            $disabled = (!$editable ||
+                         $row['status'] == count($columns) - 1)
+              ? ' disabled'
+              : '';
+
             echo <<<EOF
                   <td>
                     <input type="radio" name="order[{$i}]" value="{$j}"
