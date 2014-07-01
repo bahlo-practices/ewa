@@ -113,7 +113,7 @@ class Bestellung extends Page
     protected function generateView()
     {
         $this->getViewData();
-        $this->generatePageHeader('Bestellung');
+        $this->generatePageHeader('Bestellung', false);
 
         $this->_speisekarte->generateView('menu', $this->_pizzen);
         $this->_warenkorb->generateView('cart', 'Bestellung.php');

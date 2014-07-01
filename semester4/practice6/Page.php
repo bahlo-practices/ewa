@@ -74,7 +74,7 @@ abstract class Page
      *
      * @return none
      */
-    protected function generatePageHeader($headline = "")
+    protected function generatePageHeader($headline = "", $refresh = true)
     {
         $headline = htmlspecialchars($headline);
         header("Content-type: text/html; charset=UTF-8");
@@ -88,6 +88,9 @@ abstract class Page
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bestellung.js"></script>
     <script src="js/radio-submit.js"></script>
+EOT;
+  if ($refresh) echo '<meta http-equiv="refresh" content="5">';
+  echo <<< EOT
   </head>
   <body>
     <header>
